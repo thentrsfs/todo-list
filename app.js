@@ -5,19 +5,13 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const app = express();
 const _ = require("lodash");
-const dotenv = require("dotenv").config();
+
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect({ useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to the database');
-  })
-  .catch((err) => {
-    console.error('Error connecting to the database:', err);
-  });
+mongoose.connect("mongodb+srv://thentrsfs:DjBl3ndmix@thentrsfs.olnllem.mongodb.net/todolistDB");
 
 const itemsSchema = {
   name: String
@@ -140,6 +134,4 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
-app.listen(port, function () {
-  console.log("Listening on port $(port)")
-});
+app.listen(port);
